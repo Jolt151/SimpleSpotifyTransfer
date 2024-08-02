@@ -1,0 +1,45 @@
+# Python and pip
+.Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg
+*.so
+dist/
+build/
+develop/
+venv/
+env/
+lib/python*/site-packages/
+.eggs/
+*.egg-info/
+
+# IDE-specific files
+# IntelliJ
+*.iml
+.idea/
+*.iws
+# VS Code
+.vscode/
+
+# Testing files
+*.egg-info
+.tox/
+
+# Local configuration
+local.settings.json
+
+# Miscellaneous
+.DS_Store
+*#
+*~
+
+# Environment files
+.env
+*.env
+
+# Cache files
+.spotcache*
+cache/
+.cache/
