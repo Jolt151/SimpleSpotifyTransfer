@@ -9,7 +9,7 @@ volumeName = "Macintosh HD"
 
 def write_file(playlistName: str, tracks: List[FoundTrack]):
     root = ET.Element("NML")
-    root.set("version", "20")
+    root.set("VERSION", "20")
 
     head = ET.SubElement(root, "HEAD")
     head.set("COMPANY", "www.native-instruments.com")
