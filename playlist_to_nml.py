@@ -6,6 +6,11 @@ import util
 from local_song_repository import LocalSongRepository
 from track_matcher import TrackMatcher
 import nml_writer
+from dotenv import load_dotenv
+load_dotenv()
+import os
+
+LOCAL_REPO_PATH = os.environ['LOCAL_REPOSITORY_PATH']
 
 
 def main(user: Spotify):
@@ -18,7 +23,6 @@ def main(user: Spotify):
     number = None
     while not number:
         try:
-            # index = 2
             index = input("Select a playlist number:")
             number = int(index)
         except ValueError:
@@ -29,8 +33,7 @@ def main(user: Spotify):
     playlist = getPlaylist(user, playlistId)
     spotifyTracks = util.playlistToSpotifyTracks(playlist)
 
-    localRepositoryPath = "/home/ubuntu/music/MusicRoot"
-    localRepository = LocalSongRepository(localRepositoryPath)
+    localRepository = LocalSongRepository(LOCAL_REPO_PATH)
 
     trackMatcher = TrackMatcher(localRepository, [], [])
     trackMatcher.match(spotifyTracks)

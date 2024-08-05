@@ -23,7 +23,7 @@ def write_file(playlistName: str, tracks: List[FoundTrack]):
         location = ET.SubElement(entry, "LOCATION")
 
         path = Path(track.song.file)
-        location.set("DIR", str(path.parent))
+        location.set("DIR", getNmlFormattedPath(str(path)))
         location.set("FILE", path.name)
         location.set("VOLUME", volumeName)
         location.set("VOLUMEID", volumeName)
@@ -48,7 +48,7 @@ def write_file(playlistName: str, tracks: List[FoundTrack]):
         entry = ET.SubElement(playlist, "ENTRY")
         primaryKey = ET.SubElement(entry, "PRIMARYKEY")
         primaryKey.set("TYPE", "TRACK")
-        primaryKey.set("KEY", str(volumeName + str(track.song.file)))
+        primaryKey.set("KEY", volumeName + getNmlFormattedPath(str(track.song.file)))
 
     # tree = ET.ElementTree(root)
     # tree.write("output.xml")
@@ -57,4 +57,4 @@ def write_file(playlistName: str, tracks: List[FoundTrack]):
 
 def getNmlFormattedPath(path: str) -> str:
     path = Path(path)
-    return "/:".join(path.parts)
+    return '/:' + '/:'.join(path.parts[1:])
