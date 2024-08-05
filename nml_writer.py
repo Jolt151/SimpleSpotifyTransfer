@@ -7,7 +7,7 @@ import uuid
 volumeName = "Macintosh HD"
 
 
-def write_file(playlistName: str, tracks: List[FoundTrack]):
+def write_file(playlistName: str, trackPaths: List[str]):
     root = ET.Element("NML")
     root.set("VERSION", "20")
 
@@ -40,15 +40,15 @@ def write_file(playlistName: str, tracks: List[FoundTrack]):
     node2.set("NAME", playlistName)
 
     playlist = ET.SubElement(node2, "PLAYLIST")
-    playlist.set("ENTRIES", str(len(tracks)))
+    playlist.set("ENTRIES", str(len(trackPaths)))
     playlist.set("TYPE", "LIST")
     playlist.set("uuid", str(uuid.uuid4()))
 
-    for track in tracks:
+    for path in trackPaths:
         entry = ET.SubElement(playlist, "ENTRY")
         primaryKey = ET.SubElement(entry, "PRIMARYKEY")
         primaryKey.set("TYPE", "TRACK")
-        primaryKey.set("KEY", volumeName + getNmlFormattedPath(str(track.song.file)))
+        primaryKey.set("KEY", volumeName + getNmlFormattedPath(path))
 
     # tree = ET.ElementTree(root)
     # tree.write("output.xml")

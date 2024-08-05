@@ -66,7 +66,8 @@ def main(user: Spotify):
     for foundTrack in trackMatcher.found_tracks:
         print(f"Found {foundTrack.song.title}")
 
-    print(nml_writer.write_file(playlistName, trackMatcher.found_tracks))
+    orderedTracks = localRepository.order_songs_as_filepaths(trackMatcher.found_tracks)
+    print(nml_writer.write_file(playlistName, orderedTracks))
 
 
 def getPlaylists(user: Spotify):
