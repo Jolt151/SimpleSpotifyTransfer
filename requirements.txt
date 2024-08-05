@@ -1,2 +1,4 @@
-spotipy
-python-dotenv
+fuzzywuzzy==0.18.0
+python-dotenv==1.0.1
+spotipy==2.23.0
+tinytag==1.10.1
