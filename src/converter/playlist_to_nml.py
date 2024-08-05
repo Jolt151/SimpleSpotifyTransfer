@@ -21,7 +21,7 @@ def main(user: Spotify):
     playlist_index = None
     while (
         playlist_index is None
-        or playlist_index <= 0
+        or playlist_index < 0
         or playlist_index >= len(playlist_names)
     ):
         playlist_index = input("Select a playlist index: ")
