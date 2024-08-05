@@ -27,7 +27,8 @@ def main(user: Spotify):
             number = int(index)
         except ValueError:
             print("Invalid value")
-    print(f"You selected {util.getPlaylistNames(playlists)[number]}")
+    playlistName = util.getPlaylistNames(playlists)[number]
+    print(f"You selected {playlistName}")
 
     playlistId = playlists[number]["id"]
     playlist = getPlaylist(user, playlistId)
@@ -65,7 +66,7 @@ def main(user: Spotify):
     for foundTrack in trackMatcher.found_tracks:
         print(f"Found {foundTrack.song.title}")
 
-    print(nml_writer.write_file("playlist name", trackMatcher.found_tracks))
+    print(nml_writer.write_file(playlistName, trackMatcher.found_tracks))
 
 
 def getPlaylists(user: Spotify):

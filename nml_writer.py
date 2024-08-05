@@ -15,18 +15,18 @@ def write_file(playlistName: str, tracks: List[FoundTrack]):
     head.set("COMPANY", "www.native-instruments.com")
     head.set("PROGRAM", "Traktor Pro 4")
 
-    collection = ET.SubElement(root, "COLLECTION")
-    collection.set("ENTRIES", f"{len(tracks)}")
+    # collection = ET.SubElement(root, "COLLECTION")
+    # collection.set("ENTRIES", f"{len(tracks)}")
 
-    for track in tracks:
-        entry = ET.SubElement(collection, "ENTRY")
-        location = ET.SubElement(entry, "LOCATION")
+    # for track in tracks:
+    #     entry = ET.SubElement(collection, "ENTRY")
+    #     location = ET.SubElement(entry, "LOCATION")
 
-        path = Path(track.song.file)
-        location.set("DIR", getNmlFormattedPath(str(path.parent)) + "/:")
-        location.set("FILE", path.name)
-        location.set("VOLUME", volumeName)
-        location.set("VOLUMEID", volumeName)
+    #     path = Path(track.song.file)
+    #     location.set("DIR", getNmlFormattedPath(str(path.parent)) + "/:")
+    #     location.set("FILE", path.name)
+    #     location.set("VOLUME", volumeName)
+    #     location.set("VOLUMEID", volumeName)
 
     playlists = ET.SubElement(root, "PLAYLISTS")
     node = ET.SubElement(playlists, "NODE")
