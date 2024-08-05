@@ -1,7 +1,7 @@
 from spotipy.client import *
 from src.util import util
 from .track_matcher import TrackMatcher
-from .local_song_repository import LocalSongRepository
+from .local_library_repository import LocalLibraryRepository
 from . import nml_writer
 from dotenv import load_dotenv
 import os
@@ -37,7 +37,7 @@ def main(user: Spotify):
 
     spotify_tracks = util.playlist_to_spotify_tracks(playlist)
 
-    localRepository = LocalSongRepository(LOCAL_REPO_PATH)
+    localRepository = LocalLibraryRepository(LOCAL_REPO_PATH)
 
     track_matcher = TrackMatcher(localRepository, [], [])
     track_matcher.match(spotify_tracks)

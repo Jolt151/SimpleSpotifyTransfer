@@ -1,4 +1,4 @@
-from src.model.song import Song
+from src.model.local_track import LocalTrack
 from src.model.spotify_track import SpotifyTrack
 from typing import List
 from typing import Optional
@@ -9,7 +9,7 @@ class PendingTrack:
         self,
         spotify_track: SpotifyTrack,
         index: int,
-        matches: Optional[List[Song]],
+        matches: Optional[List[LocalTrack]],
         search_results: List[str],
     ):
         self.spotify_track = spotify_track

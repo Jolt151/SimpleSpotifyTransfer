@@ -1,6 +1,6 @@
 from typing import List
-from src.converter.local_song_repository import LocalSongRepository
-from src.model.song import Song
+from src.converter.local_library_repository import LocalLibraryRepository
+from src.model.local_track import LocalTrack
 from src.model.spotify_track import SpotifyTrack
 from src.model.found_track import FoundTrack
 from src.model.pending_track import PendingTrack
@@ -9,7 +9,7 @@ from src.model.pending_track import PendingTrack
 class TrackMatcher:
     def __init__(
         self,
-        localSongRepository: LocalSongRepository,
+        localSongRepository: LocalLibraryRepository,
         found_tracks: List[FoundTrack],
         pending_tracks: List[PendingTrack],
     ):
@@ -37,7 +37,7 @@ class TrackMatcher:
                     PendingTrack(spotify_track, index, None, search_results)
                 )
 
-    def add_match(self, index: int, track: Song):
+    def add_match(self, index: int, track: LocalTrack):
         self.found_tracks.append(FoundTrack(track, index))
 
     def add_match(self, index: int, track_path: str) -> bool:

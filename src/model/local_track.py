@@ -1,7 +1,7 @@
-from pathlib import Path  # Use Path for file paths
+from pathlib import Path
 
 
-class Song:
+class LocalTrack:
     def __init__(self, file: Path, title: str, artist: str):
         self.file = file
         self.title = title
