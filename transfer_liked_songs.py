@@ -23,7 +23,7 @@ def getSortedTracks(tracks):
 def transferLikedSongs(user1, user2, dryRun):
     tracks = getLikedSongs(user1)
 
-    print(f"Adding the following tracks: {util.getTrackNames(tracks)}")
+    print(f"Adding the following tracks: {util.get_track_names(tracks)}")
     # Prompt for continuation
     continue_input = input("Do you want to continue? (y/[N]): ")
     if continue_input.lower() != "y":

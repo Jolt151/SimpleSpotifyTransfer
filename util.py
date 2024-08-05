@@ -2,11 +2,11 @@ from model.spotify_track import SpotifyTrack
 from typing import List
 
 
-def getTrackNames(tracks):
+def get_track_names(tracks):
     return list(map(lambda track: track["track"]["name"], tracks))
 
 
-def getPlaylistNames(playlists):
+def get_playlist_names(playlists):
     return list(
         map(
             lambda playlist: f'{playlist["name"]} • {playlist["owner"]["display_name"]}',
@@ -15,11 +15,11 @@ def getPlaylistNames(playlists):
     )
 
 
-def trackToSpotifyTrack(track):
+def track_to_spotify_track(track):
     return SpotifyTrack(track["name"], trackToArtistString(track))
 
 
-def playlistToSpotifyTracks(playlist) -> List[SpotifyTrack]:
+def playlist_to_spotify_tracks(playlist) -> List[SpotifyTrack]:
     return list(
         map(
             lambda track: SpotifyTrack(
