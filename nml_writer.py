@@ -57,4 +57,4 @@ def write_file(playlistName: str, trackPaths: List[str]):
 
 def getNmlFormattedPath(path: str) -> str:
     path = Path(path)
-    return '/:' + '/:'.join(path.parts[1:])
+    return "/:" + "/:".join(path.parts[1:])

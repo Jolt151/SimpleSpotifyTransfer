@@ -7,10 +7,11 @@ from local_song_repository import LocalSongRepository
 from track_matcher import TrackMatcher
 import nml_writer
 from dotenv import load_dotenv
+
 load_dotenv()
 import os
 
-LOCAL_REPO_PATH = os.environ['LOCAL_REPOSITORY_PATH']
+LOCAL_REPO_PATH = os.environ["LOCAL_REPOSITORY_PATH"]
 
 
 def main(user: Spotify):
@@ -45,7 +46,9 @@ def main(user: Spotify):
 
     print(f"missing {len(trackMatcher.found_tracks)}")
     for pendingTrack in trackMatcher.pending_tracks:
-        print(f"missing {pendingTrack.spotify_track.artist} - {pendingTrack.spotify_track.title}")
+        print(
+            f"missing {pendingTrack.spotify_track.artist} - {pendingTrack.spotify_track.title}"
+        )
         print(f"    Possible finds:")
         for index, result in enumerate(pendingTrack.search_results):
             print(f"{index}: {result}")
