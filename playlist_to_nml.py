@@ -18,7 +18,7 @@ def main(user: Spotify):
     playlistNames = util.getPlaylistNames(playlists)
     print("Which playlist would you like to copy?")
     for index, playlist in enumerate(playlistNames):
-        print(f"{index}: {playlist}")
+        print(f"{index}: {playlist[0]} • {playlist[1]}")
 
     number = None
     while not number:
@@ -27,7 +27,7 @@ def main(user: Spotify):
             number = int(index)
         except ValueError:
             print("Invalid value")
-    playlistName = util.getPlaylistNames(playlists)[number]
+    playlistName = playlistNames[number][0]
     print(f"You selected {playlistName}")
 
     playlistId = playlists[number]["id"]
@@ -45,7 +45,7 @@ def main(user: Spotify):
 
     print(f"missing {len(trackMatcher.found_tracks)}")
     for pendingTrack in trackMatcher.pending_tracks:
-        print(f"missing {pendingTrack.spotify_track.title}")
+        print(f"missing {pendingTrack.spotify_track.artist} - {pendingTrack.spotify_track.title}")
         print(f"    Possible finds:")
         for index, result in enumerate(pendingTrack.search_results):
             print(f"{index}: {result}")
