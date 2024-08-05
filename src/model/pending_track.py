@@ -1,5 +1,5 @@
-from model.song import Song
-from model.spotify_track import SpotifyTrack
+from src.model.song import Song
+from src.model.spotify_track import SpotifyTrack
 from typing import List
 from typing import Optional
 

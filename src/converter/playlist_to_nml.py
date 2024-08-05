@@ -1,8 +1,8 @@
 from spotipy.client import *
-import util
-from local_song_repository import LocalSongRepository
-from track_matcher import TrackMatcher
-import nml_writer
+from src.util import util
+from .track_matcher import TrackMatcher
+from .local_song_repository import LocalSongRepository
+from . import nml_writer
 from dotenv import load_dotenv
 import os
 
@@ -59,7 +59,7 @@ def main(user: Spotify):
             manual_track = int(manual_track)
         except ValueError:
             continue
-        if manual_track <= 0 or manual_track >= len(pendingTrack.search_results):
+        if manual_track < 0 or manual_track >= len(pendingTrack.search_results):
             continue
         else:
             success = track_matcher.add_match(

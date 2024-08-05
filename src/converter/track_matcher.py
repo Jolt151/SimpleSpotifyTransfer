@@ -1,10 +1,9 @@
-from typing import List, Dict, Optional
-import local_song_repository
-from local_song_repository import LocalSongRepository
-from model.song import Song
-from model.spotify_track import SpotifyTrack
-from model.found_track import FoundTrack
-from model.pending_track import PendingTrack
+from typing import List
+from src.converter.local_song_repository import LocalSongRepository
+from src.model.song import Song
+from src.model.spotify_track import SpotifyTrack
+from src.model.found_track import FoundTrack
+from src.model.pending_track import PendingTrack
 
 
 class TrackMatcher:

@@ -1,5 +1,4 @@
 import xml.etree.ElementTree as ET
-from model.found_track import FoundTrack
 from typing import List
 from pathlib import Path
 import uuid

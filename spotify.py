@@ -1,10 +1,7 @@
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 from spotipy import cache_handler
-import time
-import transfer_liked_songs
-import util
-import playlist_to_nml
+from src.converter import playlist_to_nml
+from src.transfer import transfer_liked_songs
 from dotenv import load_dotenv
 import os
 

@@ -1,4 +1,4 @@
-from model.song import Song
+from src.model.song import Song
 
 
 class FoundTrack:

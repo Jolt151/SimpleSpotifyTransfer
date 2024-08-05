@@ -1,10 +1,9 @@
-from typing import List, Dict, Optional, Union
+from typing import List, Dict, Optional
 from pathlib import Path  # Use Path for file paths
 import re  # For regular expressions (formatQuery)
-from model.song import Song
-from model.found_track import FoundTrack
-from model.pending_track import PendingTrack
-from fuzzywuzzy import fuzz, process
+from src.model.song import Song
+from src.model.found_track import FoundTrack
+from fuzzywuzzy import process
 from tinytag import TinyTag
 
 

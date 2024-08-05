@@ -1,4 +1,4 @@
-from model.spotify_track import SpotifyTrack
+from src.model.spotify_track import SpotifyTrack
 from typing import List
 
 
