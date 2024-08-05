@@ -2,8 +2,11 @@ import xml.etree.ElementTree as ET
 from typing import List
 from pathlib import Path
 import uuid
+from dotenv import load_dotenv
+import os
 
-volumeName = "Macintosh HD"
+load_dotenv()
+VOLUME_NAME = os.environ["LOCAL_VOLUME_NAME"]
 
 
 def write_file(playlistName: str, trackPaths: List[str]):
@@ -47,7 +50,7 @@ def write_file(playlistName: str, trackPaths: List[str]):
         entry = ET.SubElement(playlist, "ENTRY")
         primaryKey = ET.SubElement(entry, "PRIMARYKEY")
         primaryKey.set("TYPE", "TRACK")
-        primaryKey.set("KEY", volumeName + getNmlFormattedPath(path))
+        primaryKey.set("KEY", VOLUME_NAME + getNmlFormattedPath(path))
 
     # tree = ET.ElementTree(root)
     # tree.write("output.xml")

@@ -8,6 +8,8 @@
 ```
 CLIENT_ID=yourclientid
 CLIENT_SECRET=yourclientsecret
+LOCAL_REPOSITORY_PATH=/Users/me/Music
+LOCAL_VOLUME_NAME="Macintosh HD"
 ```
 
 ## Remote Development

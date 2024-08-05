@@ -46,7 +46,7 @@ class LocalLibraryRepository:
 
     def order_songs_as_filepaths(self, songs: List[FoundTrack]) -> List[str]:
         ordered_songs = sorted(songs, key=lambda s: s.index)
-        return [str(song.song.file) for song in ordered_songs]
+        return [str(song.local_track.file) for song in ordered_songs]
 
     def format_query(self, query: str) -> str:
         mutable_query = query
