@@ -4,6 +4,7 @@ from spotipy import cache_handler
 import time
 import transfer_liked_songs
 import util
+import playlist_to_nml
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -55,8 +56,10 @@ print("User1 (Source) is " + spotifyUser1.me()["email"])
 print("User2 (Destination) is " + spotifyUser2.me()["email"])
 
 # Prompt for continuation
-continue_input = input("Do you want to continue? (y/[N]): ")
-if continue_input.lower() != "y":
-    exit()
+# continue_input = input("Do you want to continue? (y/[N]): ")
+# if continue_input.lower() != "y":
+# exit()
 
-transfer_liked_songs.transferLikedSongs(spotifyUser1, spotifyUser2, dryRun=False)
+# transfer_liked_songs.transferLikedSongs(spotifyUser1, spotifyUser2, dryRun=False)
+
+playlist_to_nml.main(spotifyUser2)
