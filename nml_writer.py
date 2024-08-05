@@ -23,7 +23,7 @@ def write_file(playlistName: str, tracks: List[FoundTrack]):
         location = ET.SubElement(entry, "LOCATION")
 
         path = Path(track.song.file)
-        location.set("DIR", getNmlFormattedPath(str(path)))
+        location.set("DIR", getNmlFormattedPath(str(path.parent)) + "/:")
         location.set("FILE", path.name)
         location.set("VOLUME", volumeName)
         location.set("VOLUMEID", volumeName)
