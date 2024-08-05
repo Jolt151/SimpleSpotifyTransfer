@@ -3,26 +3,8 @@ import local_song_repository
 from local_song_repository import LocalSongRepository
 from model.song import Song
 from model.spotify_track import SpotifyTrack
-
-
-class FoundTrack:
-    def __init__(self, song: "Song", index: int):
-        self.song = song
-        self.index = index
-
-
-class PendingTrack:
-    def __init__(
-        self,
-        spotify_track: SpotifyTrack,
-        index: int,
-        matches: Optional[List[Song]],
-        search_results: List[str],
-    ):
-        self.spotify_track = spotify_track
-        self.index = index
-        self.matches = matches
-        self.search_results = search_results
+from model.found_track import FoundTrack
+from model.pending_track import PendingTrack
 
 
 class TrackMatcher:

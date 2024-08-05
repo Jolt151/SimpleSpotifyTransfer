@@ -17,21 +17,21 @@ LOCAL_REPO_PATH = os.environ["LOCAL_REPOSITORY_PATH"]
 def main(user: Spotify):
     playlists = getPlaylists(user)
     playlistNames = util.getPlaylistNames(playlists)
-    print("Which playlist would you like to copy?")
+    print("Which playlist would you like to convert?")
     for index, playlist in enumerate(playlistNames):
-        print(f"{index}: {playlist[0]} • {playlist[1]}")
+        print(f"{index}: {playlist}")
 
-    number = None
-    while not number:
+    playlistIndexInput = None
+    while not playlistIndexInput:
         try:
-            index = input("Select a playlist number:")
-            number = int(index)
+            index = input("Select a playlist index:")
+            playlistIndexInput = int(index)
         except ValueError:
             print("Invalid value")
-    playlistName = playlistNames[number][0]
+    playlistName = playlistNames[playlistIndexInput]
     print(f"You selected {playlistName}")
 
-    playlistId = playlists[number]["id"]
+    playlistId = playlists[playlistIndexInput]["id"]
     playlist = getPlaylist(user, playlistId)
     spotifyTracks = util.playlistToSpotifyTracks(playlist)
 
@@ -40,9 +40,9 @@ def main(user: Spotify):
     trackMatcher = TrackMatcher(localRepository, [], [])
     trackMatcher.match(spotifyTracks)
 
-    print(f"found {len(trackMatcher.pending_tracks)} tracks")
+    print(f"Found {len(trackMatcher.pending_tracks)} tracks")
     for foundTrack in trackMatcher.found_tracks:
-        print(f"Found {foundTrack.song.title}")
+        print(f"Found {foundTrack.song.artist} - {foundTrack.song.title}")
 
     print(f"missing {len(trackMatcher.found_tracks)}")
     for pendingTrack in trackMatcher.pending_tracks:
