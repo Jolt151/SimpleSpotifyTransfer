@@ -7,6 +7,7 @@ import os
 
 load_dotenv()
 VOLUME_NAME = os.environ["LOCAL_VOLUME_NAME"]
+NML_OUTPUT_FOLDER = os.environ['NML_OUTPUT_FOLDER']
 
 
 def write_file(playlistName: str, trackPaths: List[str]):
@@ -52,8 +53,12 @@ def write_file(playlistName: str, trackPaths: List[str]):
         primaryKey.set("TYPE", "TRACK")
         primaryKey.set("KEY", VOLUME_NAME + getNmlFormattedPath(path))
 
-    # tree = ET.ElementTree(root)
-    # tree.write("output.xml")
+    tree = ET.ElementTree(root)
+
+    outputPath = os.path.join(*[NML_OUTPUT_FOLDER, playlistName + ".nml"])
+    Path(outputPath).parent.mkdir(parents=True)
+    tree.write(outputPath, encoding='utf-8')
+
     return ET.tostring(root).decode("utf-8")
 
 

@@ -8,8 +8,16 @@
 ```
 CLIENT_ID=yourclientid
 CLIENT_SECRET=yourclientsecret
+
+# Converter tools
 LOCAL_REPOSITORY_PATH=/Users/me/Music
+# Volume that the local tracks are stored on. Needed for NML conversion
 LOCAL_VOLUME_NAME="Macintosh HD"
+# Output folder for the converted NML files
+NML_OUTPUT_FOLDER=/Users/me/Music/NMLOutput
+
+
+
 ```
 
 ## Remote Development
