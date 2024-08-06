@@ -44,7 +44,9 @@ def main(user: Spotify):
 
     print(f"Found {len(track_matcher.pending_tracks)} tracks")
     for found_track in track_matcher.found_tracks:
-        print(f"Found {found_track.local_track.artist} - {found_track.local_track.title}")
+        print(
+            f"Found {found_track.local_track.artist} - {found_track.local_track.title}"
+        )
 
     print(f"Missing {len(track_matcher.found_tracks)}")
     for pendingTrack in track_matcher.pending_tracks:
