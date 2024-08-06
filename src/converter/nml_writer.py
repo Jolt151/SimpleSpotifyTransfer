@@ -55,8 +55,10 @@ def write_file(playlistName: str, trackPaths: List[str]):
 
     tree = ET.ElementTree(root)
 
-    outputPath = os.path.join(*[NML_OUTPUT_FOLDER, playlistName + ".nml"])
-    Path(outputPath).parent.mkdir(parents=True)
+    outputPath = Path(os.path.join(*[NML_OUTPUT_FOLDER, playlistName + ".nml"]))
+
+    if not outputPath.parent.exists():
+        outputPath.parent.mkdir(parents=True)
     tree.write(outputPath, encoding="utf-8")
 
     return ET.tostring(root).decode("utf-8")
