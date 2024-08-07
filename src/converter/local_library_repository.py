@@ -42,7 +42,7 @@ class LocalLibraryRepository:
         return list(
             map(
                 lambda tuple: tuple[0],
-                process.extract(query, self.library_filenames, limit=size),
+                process.extract(self.format_query(query), self.library_filenames, limit=size),
             )
         )
 
