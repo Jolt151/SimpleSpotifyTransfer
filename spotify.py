@@ -1,13 +1,11 @@
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 from spotipy import cache_handler
-import time
-import transfer_liked_songs
-import util
+from src.converter import playlist_to_nml
+from src.transfer import transfer_liked_songs
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
-import os
 
 client_id = os.environ.get("CLIENT_ID")
 client_secret = os.environ.get("CLIENT_SECRET")
@@ -55,8 +53,10 @@ print("User1 (Source) is " + spotifyUser1.me()["email"])
 print("User2 (Destination) is " + spotifyUser2.me()["email"])
 
 # Prompt for continuation
-continue_input = input("Do you want to continue? (y/[N]): ")
-if continue_input.lower() != "y":
-    exit()
+# continue_input = input("Do you want to continue? (y/[N]): ")
+# if continue_input.lower() != "y":
+# exit()
 
-transfer_liked_songs.transferLikedSongs(spotifyUser1, spotifyUser2, dryRun=False)
+# transfer_liked_songs.transferLikedSongs(spotifyUser1, spotifyUser2, dryRun=False)
+
+playlist_to_nml.main(spotifyUser2)

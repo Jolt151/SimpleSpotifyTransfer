@@ -1,8 +1,5 @@
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
-from spotipy import cache_handler
 import time
-import util
+from src.util import util
 
 
 # Gets the user's liked songs
@@ -23,7 +20,7 @@ def getSortedTracks(tracks):
 def transferLikedSongs(user1, user2, dryRun):
     tracks = getLikedSongs(user1)
 
-    print(f"Adding the following tracks: {util.getTrackNames(tracks)}")
+    print(f"Adding the following tracks: {util.get_track_names(tracks)}")
     # Prompt for continuation
     continue_input = input("Do you want to continue? (y/[N]): ")
     if continue_input.lower() != "y":
