@@ -10,7 +10,7 @@ from tinytag import TinyTag
 class LocalLibraryRepository:
     def __init__(self, library_path: str):
         self.library_path = Path(library_path)  # Ensure Path object
-        self.filter_words = ["feat", "remix", "mix", "edit"]
+        self.filter_words = ["feat", "remix", "mix", "edit", "radio edit"]
 
         self.library = self.get_local_tracks_as_dict()
         self.library_list = self.flatten_library(self.library)
