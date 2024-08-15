@@ -1,5 +1,6 @@
 import time
 from src.util import util
+from src.auth import auth
 
 
 # Gets the user's liked songs
@@ -33,3 +34,21 @@ def transferLikedSongs(user1, user2, dryRun):
         if not dryRun:
             user2.current_user_saved_tracks_add(tracks)
             time.sleep(1)
+
+
+def main():
+    user1 = auth.get_user_1()
+    user2 = auth.get_user_2()
+    print("User1 (Source) is " + user1.me()["email"])
+    print("User2 (Destination) is " + user2.me()["email"])
+
+    # Prompt for continuation
+    continue_input = input("Do you want to continue? (y/[N]): ")
+    if continue_input.lower() != "y":
+        exit()
+
+    # Prompt for dry run
+    dry_run = input("Dry run? ([Y]/n")
+    dry_run = dry_run.lower() != "n"
+
+    transferLikedSongs(user1, user2, dryRun=dry_run)

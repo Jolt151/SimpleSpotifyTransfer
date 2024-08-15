@@ -5,13 +5,22 @@ from .local_library_repository import LocalLibraryRepository
 from . import nml_writer
 from dotenv import load_dotenv
 import os
+from auth import auth
 
 load_dotenv()
 
 LOCAL_REPO_PATH = os.environ["LOCAL_REPOSITORY_PATH"]
 
 
-def main(user: Spotify):
+def main():
+    user = auth.get_user_1()
+
+    print("User1 is " + user.me()["email"])
+    # Prompt for continuation
+    continue_input = input("Do you want to continue? (y/[N]): ")
+    if continue_input.lower() != "y":
+        exit()
+
     playlists = get_playlists(user)
     playlist_names = util.get_playlist_names(playlists)
     print("Which playlist would you like to convert?")

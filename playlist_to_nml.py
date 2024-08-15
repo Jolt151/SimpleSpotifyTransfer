@@ -1,3 +1,3 @@
-from src.transfer import transfer_liked_songs
+from src.converter import playlist_to_nml
 
-transfer_liked_songs.main()
+playlist_to_nml.main()
