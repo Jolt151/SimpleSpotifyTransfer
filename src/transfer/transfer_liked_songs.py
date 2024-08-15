@@ -4,22 +4,22 @@ from src.auth import auth
 
 
 # Gets the user's liked songs
-def getLikedSongs(spotifyUser):
-    results = spotifyUser.current_user_saved_tracks()
+def get_liked_songs(user):
+    results = user.current_user_saved_tracks()
     tracks = results["items"]
     while results["next"]:
-        results = spotifyUser.next(results)
+        results = user.next(results)
         tracks.extend(results["items"])
-    return getSortedTracks(tracks)
+    return get_sorted_tracks(tracks)
 
 
-def getSortedTracks(tracks):
-    sortedTracks = sorted(tracks, key=lambda track: track["added_at"])
-    return sortedTracks
+def get_sorted_tracks(tracks):
+    sorted_tracks = sorted(tracks, key=lambda track: track["added_at"])
+    return sorted_tracks
 
 
-def transferLikedSongs(user1, user2, dryRun):
-    tracks = getLikedSongs(user1)
+def transfer_liked_songs(user1, user2, dry_run):
+    tracks = get_liked_songs(user1)
 
     print(f"Adding the following tracks: {util.get_track_names(tracks)}")
     # Prompt for continuation
@@ -31,7 +31,7 @@ def transferLikedSongs(user1, user2, dryRun):
         print("adding " + track["track"]["name"])
         tracks = [track["track"]["id"]]
         print(tracks)
-        if not dryRun:
+        if not dry_run:
             user2.current_user_saved_tracks_add(tracks)
             time.sleep(1)
 
@@ -51,4 +51,4 @@ def main():
     dry_run = input("Dry run? ([Y]/n")
     dry_run = dry_run.lower() != "n"
 
-    transferLikedSongs(user1, user2, dryRun=dry_run)
+    transfer_liked_songs(user1, user2, dry_run=dry_run)

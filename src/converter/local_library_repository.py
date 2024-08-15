@@ -23,10 +23,12 @@ class LocalLibraryRepository:
             song_map.setdefault(song.title, []).append(song)
         return song_map
 
-    def flatten_library(self, library: Dict[str, List[LocalTrack]]) -> List[LocalTrack]:
+    @staticmethod
+    def flatten_library(library: Dict[str, List[LocalTrack]]) -> List[LocalTrack]:
         return [song for song_list in library.values() for song in song_list]
 
-    def get_single(self, path: str) -> Optional[LocalTrack]:
+    @staticmethod
+    def get_single(path: str) -> Optional[LocalTrack]:
         try:
             file = Path(path)
             tags = TinyTag.get(file)
@@ -44,7 +46,8 @@ class LocalLibraryRepository:
             )
         )
 
-    def order_songs_as_filepaths(self, songs: List[FoundTrack]) -> List[str]:
+    @staticmethod
+    def order_songs_as_filepaths(songs: List[FoundTrack]) -> List[str]:
         ordered_songs = sorted(songs, key=lambda s: s.index)
         return [str(song.local_track.file) for song in ordered_songs]
 
@@ -73,7 +76,8 @@ class LocalLibraryRepository:
                 all_files.extend(self._get_all_files(child))
         return all_files
 
-    def _try_get_local_track_info(self, file: Path) -> Optional[LocalTrack]:
+    @staticmethod
+    def _try_get_local_track_info(file: Path) -> Optional[LocalTrack]:
         try:
             # Replace with your audio tag library (e.g., mutagen)
             tags = TinyTag.get(file)

@@ -46,9 +46,9 @@ def main():
 
     spotify_tracks = util.playlist_to_spotify_tracks(playlist)
 
-    localRepository = LocalLibraryRepository(LOCAL_REPO_PATH)
+    local_repository = LocalLibraryRepository(LOCAL_REPO_PATH)
 
-    track_matcher = TrackMatcher(localRepository, [], [])
+    track_matcher = TrackMatcher(local_repository, [], [])
     track_matcher.match(spotify_tracks)
 
     print(f"Found {len(track_matcher.pending_tracks)} tracks")
@@ -82,7 +82,7 @@ def main():
     for found_track in track_matcher.found_tracks:
         print(f"Found {found_track.local_track.title}")
 
-    ordered_tracks = localRepository.order_songs_as_filepaths(
+    ordered_tracks = local_repository.order_songs_as_filepaths(
         track_matcher.found_tracks
     )
     print(nml_writer.write_file(playlist_name, ordered_tracks))
@@ -97,8 +97,8 @@ def get_playlists(user: Spotify):
     return playlists
 
 
-def get_playlist(user: Spotify, id):
-    results = user.playlist_tracks(id)
+def get_playlist(user: Spotify, playlist_id):
+    results = user.playlist_tracks(playlist_id)
     tracks = results["items"]
     while results["next"]:
         results = user.next(results)

@@ -9,12 +9,12 @@ from src.model.pending_track import PendingTrack
 class TrackMatcher:
     def __init__(
         self,
-        localSongRepository: LocalLibraryRepository,
+        local_library_repository: LocalLibraryRepository,
         found_tracks: List[FoundTrack],
         pending_tracks: List[PendingTrack],
     ):
-        self.localSongRepository = localSongRepository
-        self.library = localSongRepository.library
+        self.local_library_repository = local_library_repository
+        self.library = local_library_repository.library
         self.found_tracks = found_tracks.copy()
         self.pending_tracks = pending_tracks.copy()
 
@@ -41,7 +41,7 @@ class TrackMatcher:
         self.found_tracks.append(FoundTrack(track, index))
 
     def add_match(self, index: int, track_path: str) -> bool:
-        song = self.localSongRepository.get_single(track_path)
+        song = self.local_library_repository.get_single(track_path)
         if song:
             self.found_tracks.append(FoundTrack(song, index))
             self.pending_tracks = [
@@ -52,4 +52,4 @@ class TrackMatcher:
             return False
 
     def search_for_matches(self, spotify_track: SpotifyTrack) -> List[str]:
-        return self.localSongRepository.search_library(spotify_track.title, 10)
+        return self.local_library_repository.search_library(spotify_track.title, 10)
