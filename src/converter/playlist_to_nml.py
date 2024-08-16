@@ -5,7 +5,7 @@ from .local_library_repository import LocalLibraryRepository
 from . import nml_writer
 from dotenv import load_dotenv
 import os
-from auth import auth
+from src.auth import auth
 
 load_dotenv()
 
