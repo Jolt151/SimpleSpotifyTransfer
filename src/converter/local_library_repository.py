@@ -15,6 +15,9 @@ class LocalLibraryRepository:
         self.library = self.get_local_tracks_as_dict()
         self.library_list = self.flatten_library(self.library)
         self.library_filenames = [str(song.file) for song in self.library_list]
+        self.library_searchable_names = [
+            str(f"{song.artist} - {song.title}") for song in self.library_list
+        ]
 
     def get_local_tracks_as_dict(self) -> Dict[str, List[LocalTrack]]:
         songs = self.get_all_local_tracks(self.library_path)
@@ -42,7 +45,9 @@ class LocalLibraryRepository:
         return list(
             map(
                 lambda tuple: tuple[0],
-                process.extract(self.format_query(query), self.library_filenames, limit=size),
+                process.extract(
+                    self.format_query(query), self.library_searchable_names, limit=size
+                ),
             )
         )
 
@@ -79,7 +84,6 @@ class LocalLibraryRepository:
     @staticmethod
     def _try_get_local_track_info(file: Path) -> Optional[LocalTrack]:
         try:
-            # Replace with your audio tag library (e.g., mutagen)
             tags = TinyTag.get(file)
             title = tags.title
             artist = tags.artist

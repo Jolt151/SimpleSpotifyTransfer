@@ -51,13 +51,13 @@ def main():
     track_matcher = TrackMatcher(local_repository, [], [])
     track_matcher.match(spotify_tracks)
 
-    print(f"Found {len(track_matcher.pending_tracks)} tracks")
+    print(f"Found {len(track_matcher.found_tracks)} tracks")
     for found_track in track_matcher.found_tracks:
         print(
             f"Found {found_track.local_track.artist} - {found_track.local_track.title}"
         )
 
-    print(f"Missing {len(track_matcher.found_tracks)}")
+    print(f"Missing {len(track_matcher.pending_tracks)}")
     for pendingTrack in track_matcher.pending_tracks:
         print(
             f"missing {pendingTrack.spotify_track.artist} - {pendingTrack.spotify_track.title}"

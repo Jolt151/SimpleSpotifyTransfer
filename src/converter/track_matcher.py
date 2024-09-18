@@ -21,20 +21,20 @@ class TrackMatcher:
     def match(self, spotify_tracks: List[SpotifyTrack]):
         for index, spotify_track in enumerate(spotify_tracks):
             matching_tracks = self.library.get(spotify_track.title)
-            if matching_tracks:
-                if len(matching_tracks) == 1:
-                    self.found_tracks.append(FoundTrack(matching_tracks[0], index))
-                else:
-                    search_results = self.search_for_matches(spotify_track)
-                    self.pending_tracks.append(
-                        PendingTrack(
-                            spotify_track, index, matching_tracks, search_results
-                        )
-                    )
+            if (
+                matching_tracks is not None
+                and len(matching_tracks) == 1
+                and matching_tracks[0].title == spotify_track.title
+                and matching_tracks[0].artist == spotify_track.artist
+            ):
+                # This is an exact match based on title and artist. Add it.
+                self.found_tracks.append(FoundTrack(matching_tracks[0], index))
             else:
                 search_results = self.search_for_matches(spotify_track)
                 self.pending_tracks.append(
-                    PendingTrack(spotify_track, index, None, search_results)
+                    PendingTrack(
+                        spotify_track, index, matching_tracks, search_results
+                    )
                 )
 
     def add_match(self, index: int, track: LocalTrack):
@@ -52,4 +52,6 @@ class TrackMatcher:
             return False
 
     def search_for_matches(self, spotify_track: SpotifyTrack) -> List[str]:
-        return self.local_library_repository.search_library(spotify_track.title, 10)
+        return self.local_library_repository.search_library(
+            f"{spotify_track.artist} - {spotify_track.title}", 10
+        )
